@@ -92,129 +92,105 @@ function TheoryStep({ session, onNext }) {
   }
 
   const { theory } = session
+  const renderText = (text) => text.split('\n').map((line, i, arr) => (
+    <span key={i}>{line}{i < arr.length - 1 && <br/>}</span>
+  ))
 
   return (
-    <div>
-      {/* Logic chain */}
-      <div className="theory-chain" style={{
-        display: 'flex', marginBottom: 18,
-        border: '1px solid var(--border)',
-        borderRadius: 'var(--r-md)', overflow: 'hidden',
-        boxShadow: 'var(--shadow-xs)',
-      }}>
-        {[
-          { label: 'Origin', value: theory.origin },
-          { label: 'Logic', value: theory.logic },
-          { label: 'Rule', value: theory.rule },
-        ].map((s, i) => (
-          <div key={i} className="chain-segment" style={{
-            flex: 1, padding: '12px 14px',
-            background: i % 2 === 0 ? 'var(--surface2)' : 'var(--surface)',
-            borderRight: i < 2 ? '1px solid var(--border)' : 'none',
-          }}>
-            <div style={{ fontSize: 9, fontWeight: 700, textTransform: 'uppercase', letterSpacing: 1, color: 'var(--text-4)', marginBottom: 4 }}>{s.label}</div>
-            <div style={{ fontSize: 12.5, color: 'var(--text-2)', lineHeight: 1.5 }}>{s.value}</div>
-          </div>
-        ))}
+    <div className="theory-layout">
+      <div className="theory-section">
+        <div className="theory-section-label">📌 Origin</div>
+        <p className="theory-section-body">{renderText(theory.origin)}</p>
       </div>
-
-      {/* Exceptions */}
-      <div style={{
-        background: 'var(--amber-bg)', border: '1px solid var(--amber-border)',
-        borderLeft: '3px solid var(--amber)',
-        borderRadius: 'var(--r-md)', padding: '14px 16px', marginBottom: 16,
-      }}>
-        <div style={{ fontSize: 9, fontWeight: 700, textTransform: 'uppercase', letterSpacing: 1, color: 'var(--amber)', marginBottom: 8 }}>⚠ Exceptions</div>
-        {theory.exceptions.map((ex, i) => (
-          <div key={i} style={{ fontSize: 13, color: 'var(--text-3)', lineHeight: 1.7 }}>
-            <strong style={{ color: 'var(--text-2)' }}>{ex.word}</strong> — {ex.fix}
-          </div>
-        ))}
+      <div className="theory-section">
+        <div className="theory-section-label">💡 The Logic</div>
+        <p className="theory-section-body">{renderText(theory.logic)}</p>
       </div>
-
-      {/* Examples grid */}
-      <div className="session-examples-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginBottom: 18 }}>
-        {theory.examples.map((ex, i) => (
-          <div key={i} style={{
-            background: 'var(--surface2)', border: '1px solid var(--border)',
-            borderRadius: 'var(--r-md)', padding: '12px 14px',
-          }}>
-            <div style={{ fontSize: 14.5, fontWeight: 600, marginBottom: 3 }}>
-              {ex.fi.split(ex.hi).map((part, j, arr) => (
-                <span key={j}>{part}{j < arr.length - 1 && <span style={{ color: 'var(--blue)' }}>{ex.hi}</span>}</span>
-              ))}
-            </div>
-            <div style={{ fontSize: 12, color: 'var(--text-4)', fontStyle: 'italic' }}>{ex.en}</div>
+      <div className="theory-section theory-section--rule">
+        <div className="theory-section-label">📐 The Rule</div>
+        <p className="theory-section-body">{renderText(theory.rule)}</p>
+        {theory.rule_table && (
+          <div className="theory-table-wrap">
+            <table className="theory-table">
+              <thead>
+                <tr>{theory.rule_table[0].map((h, i) => <th key={i}>{h}</th>)}</tr>
+              </thead>
+              <tbody>
+                {theory.rule_table.slice(1).map((row, i) => (
+                  <tr key={i}>
+                    {row.map((cell, j) => (
+                      <td key={j} className={j === 1 ? 'theory-table-fi' : j === 2 ? 'theory-table-neg' : ''}>{cell}</td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
-        ))}
-      </div>
-
-      {/* Puhekieli */}
-      <div style={{
-        background: 'var(--surface2)', border: '1px solid var(--border)',
-        borderRadius: 'var(--r-md)', padding: '14px 16px', marginBottom: 18,
-      }}>
-        <div style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: 0.9, color: 'var(--text-4)', marginBottom: 10 }}>
-          💬 Puhekieli (Spoken Finnish)
-        </div>
-        {theory.puhekieli.map((p, i) => (
-          <div key={i} className="puhekieli-row" style={{
-            display: 'grid', gridTemplateColumns: '1fr 1fr',
-            gap: 8, padding: '7px 0',
-            borderBottom: i < theory.puhekieli.length - 1 ? '1px solid var(--border)' : 'none',
-            fontSize: 13,
-          }}>
-            <div>
-              <span style={{ color: 'var(--text-4)', fontSize: 10, display: 'block', marginBottom: 2 }}>Standard</span>
-              <span style={{ fontWeight: 600 }}>{p.standard}</span>
-            </div>
-            <div>
-              <span style={{ color: 'var(--blue)', fontSize: 10, display: 'block', marginBottom: 2 }}>Spoken</span>
-              <span style={{ fontWeight: 600, color: 'var(--blue)' }}>{p.spoken}</span>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* Ask tutor */}
-      <div style={{
-        background: 'var(--surface)', border: '1px solid var(--border)',
-        borderRadius: 'var(--r-md)', padding: '16px',
-        marginBottom: 20,
-      }}>
-        <div style={{ fontSize: 12, fontWeight: 700, color: 'var(--text-3)', marginBottom: 10 }}>
-          🤖 Something unclear? Ask your tutor
-        </div>
-        <div style={{ display: 'flex', gap: 8, marginBottom: tutorReply ? 12 : 0 }}>
-          <input
-            className="drill-input"
-            style={{ flex: 1 }}
-            placeholder="e.g. Why does hän get a double vowel?"
-            value={tutorQuestion}
-            onChange={e => setTutorQuestion(e.target.value)}
-            onKeyDown={e => e.key === 'Enter' && ask()}
-          />
-          <button className="btn btn-soft" onClick={ask} disabled={loading}>
-            {loading ? '…' : 'Ask →'}
-          </button>
-        </div>
-        {tutorReply && (
-          <div style={{
-            background: 'var(--surface2)', border: '1px solid var(--border)',
-            borderRadius: 'var(--r-sm)', padding: '12px 14px',
-            fontSize: 13.5, lineHeight: 1.7, color: 'var(--text-2)',
-          }}
-          dangerouslySetInnerHTML={{ __html: tutorReply.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br/>') }}
-          />
         )}
       </div>
-
-      <button className="btn btn-primary" onClick={onNext} style={{ width: '100%', justifyContent: 'center', padding: '12px' }}>
+      {theory.exceptions && theory.exceptions.length > 0 && (
+        <div className="theory-exceptions">
+          <div className="theory-section-label">⚠ Exceptions & Watch-outs</div>
+          {theory.exceptions.map((ex, i) => (
+            <div key={i} className="theory-exception-row">
+              <strong>{ex.word}</strong>
+              <span>{ex.fix}</span>
+            </div>
+          ))}
+        </div>
+      )}
+      <div className="theory-section">
+        <div className="theory-section-label">✏ Examples in context</div>
+        <div className="session-examples-grid">
+          {theory.examples.map((ex, i) => (
+            <div key={i} className="theory-example-card">
+              <div className="theory-example-fi">
+                {ex.fi.split(ex.hi).map((part, j, arr) => (
+                  <span key={j}>{part}{j < arr.length - 1 && <span className="theory-highlight">{ex.hi}</span>}</span>
+                ))}
+              </div>
+              <div className="theory-example-en">{ex.en}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+      {theory.puhekieli && theory.puhekieli.length > 0 && (
+        <div className="theory-puhekieli">
+          <div className="theory-section-label">💬 Puhekieli — Spoken Finnish</div>
+          <p className="theory-puhekieli-intro">Standard Finnish is what you write and read. Spoken Finnish (puhekieli) is what people actually say on the street, at the gym, on public transport. Both matter.</p>
+          {theory.puhekieli.map((p, i) => (
+            <div key={i} className={`puhekieli-row${i < theory.puhekieli.length - 1 ? ' puhekieli-row--bordered' : ''}`}>
+              <div className="puhekieli-col">
+                <span className="puhekieli-col-label">Standard</span>
+                <span className="puhekieli-col-value">{p.standard}</span>
+              </div>
+              <div className="puhekieli-arrow">→</div>
+              <div className="puhekieli-col">
+                <span className="puhekieli-col-label puhekieli-col-label--spoken">Spoken</span>
+                <span className="puhekieli-col-value puhekieli-col-value--spoken">{p.spoken}</span>
+              </div>
+              {p.note && <div className="puhekieli-note">{p.note}</div>}
+            </div>
+          ))}
+        </div>
+      )}
+      <div className="theory-ask-tutor">
+        <div className="theory-ask-label">🤖 Something unclear? Ask your tutor</div>
+        <div className="theory-ask-row">
+          <input className="drill-input" placeholder="e.g. Why does hän get a double vowel?" value={tutorQuestion} onChange={e => setTutorQuestion(e.target.value)} onKeyDown={e => e.key === 'Enter' && ask()} />
+          <button className="btn btn-soft" onClick={ask} disabled={loading}>{loading ? '…' : 'Ask →'}</button>
+        </div>
+        {tutorReply && (
+          <div className="theory-tutor-reply" dangerouslySetInnerHTML={{ __html: `<p>${tutorReply.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n\n/g, '</p><p>').replace(/\n/g, '<br/>')}</p>` }} />
+        )}
+      </div>
+      <button className="btn btn-primary" onClick={onNext} style={{ width: '100%', justifyContent: 'center', padding: '14px' }}>
         I've read the theory — Start Drills ⚡
       </button>
     </div>
   )
 }
+
 
 // ── STEP 1: DRILLS ─────────────────────────────────────────────────────────
 function DrillsStep({ session, onNext }) {

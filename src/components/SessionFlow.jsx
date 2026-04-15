@@ -133,7 +133,7 @@ function TheoryStep({ session, onNext }) {
       </div>
 
       {/* Examples grid */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginBottom: 18 }}>
+      <div className="session-examples-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginBottom: 18 }}>
         {theory.examples.map((ex, i) => (
           <div key={i} style={{
             background: 'var(--surface2)', border: '1px solid var(--border)',
@@ -158,7 +158,7 @@ function TheoryStep({ session, onNext }) {
           💬 Puhekieli (Spoken Finnish)
         </div>
         {theory.puhekieli.map((p, i) => (
-          <div key={i} style={{
+          <div key={i} className="puhekieli-row" style={{
             display: 'grid', gridTemplateColumns: '1fr 1fr',
             gap: 8, padding: '7px 0',
             borderBottom: i < theory.puhekieli.length - 1 ? '1px solid var(--border)' : 'none',
@@ -773,7 +773,7 @@ function CompleteStep({ session, checkResult, onNavigateLibrary }) {
       </p>
 
       {/* Summary */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 12, marginBottom: 24 }}>
+      <div className="session-complete-stats" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 12, marginBottom: 24 }}>
         {[
           { icon: '📚', value: session.vocab_count, label: 'Words learned' },
           { icon: '⚡', value: session.drills.length, label: 'Drills completed' },

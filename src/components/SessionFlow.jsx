@@ -96,7 +96,7 @@ function TheoryStep({ session, onNext }) {
   return (
     <div>
       {/* Logic chain */}
-      <div style={{
+      <div className="theory-chain" style={{
         display: 'flex', marginBottom: 18,
         border: '1px solid var(--border)',
         borderRadius: 'var(--r-md)', overflow: 'hidden',
@@ -107,7 +107,7 @@ function TheoryStep({ session, onNext }) {
           { label: 'Logic', value: theory.logic },
           { label: 'Rule', value: theory.rule },
         ].map((s, i) => (
-          <div key={i} style={{
+          <div key={i} className="chain-segment" style={{
             flex: 1, padding: '12px 14px',
             background: i % 2 === 0 ? 'var(--surface2)' : 'var(--surface)',
             borderRight: i < 2 ? '1px solid var(--border)' : 'none',

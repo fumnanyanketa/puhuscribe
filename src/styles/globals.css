@@ -925,18 +925,57 @@ h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.25; letter-spa
   .hamburger-btn { display: flex; }
   .topbar-brand { display: none; }
   .main-content { margin-left: 0; }
-  .page { padding: 18px 16px 40px; }
+
+  /* Prevent any content from breaking out of the viewport horizontally */
+  .page { padding: 18px 16px 40px; overflow-x: hidden; }
+
   .grid-2, .grid-3 { grid-template-columns: 1fr; }
   .ref-grid { grid-template-columns: 1fr; }
-  .vocab-row { grid-template-columns: 1fr 1fr; gap: 8px; }
-  .col-cat, .col-srs, .vocab-row > :last-child { display: none; }
   .course-hero { padding: 20px; }
+
+  /* Vocab table on mobile: show Finnish + English + audio only.
+     Audio button is the 5th child. col-cat is 3rd, col-srs is 4th.
+     We target those by class, NOT by :last-child, so audio stays visible. */
+  .vocab-row {
+    grid-template-columns: 1fr 1fr 44px;
+    gap: 8px;
+  }
+  .vocab-row.header > :nth-child(3),
+  .vocab-row.header > :nth-child(4) { display: none; }
+  .col-cat, .col-srs { display: none; }
+
+  /* Session flow — step bar scrolls horizontally on small screens */
+  .session-step-bar-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 4px;
+  }
+
+  /* Theory chain — stack vertically on mobile instead of 3 columns */
+  .theory-chain {
+    flex-direction: column;
+  }
+  .theory-chain .chain-segment + .chain-segment {
+    border-left: none;
+    border-top: 1px solid var(--border);
+  }
+
+  /* Flip card grid — 2 columns on mobile */
+  .flip-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
 }
+
 @media (max-width: 480px) {
   .page { padding: 14px 12px 32px; }
   .topbar { padding: 0 14px; }
   .stat-card { padding: 16px; }
   .stat-number { font-size: 28px; }
+  .industry-grid { grid-template-columns: 1fr; }
+
+  /* Vocab: just Finnish + audio on very small screens */
+  .vocab-row { grid-template-columns: 1fr 44px; }
+  .vocab-en { display: none; }
 }
 
 /* ── ERROR TRACKER ───────────────────────────────────────────────────────── */

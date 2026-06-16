@@ -299,6 +299,79 @@ grammar-grind apps. It is the strongest ground available to stand on.
 
 ---
 
+## Part 6 — The 24 sessions, mapped to the framework
+
+The SKK1 curriculum (Finnish A1→A2, 24 sessions) is where the framework stops being theory
+and becomes the actual product. **Every session touches all four stages** through the
+7-step session flow (Theory → Drills → Speaking → Vocabulary → Conversation → Progression
+Check → Complete). But each session has a **centre of gravity** — the one stage it mainly
+advances. That centre is what we map here.
+
+| # | Session | Centre of gravity | Why |
+|---|---|---|---|
+| 1 | Hei! Kuka sinä olet? | **WORDS** | Greetings, introductions, survival chunks + first identity sentences (*olla*). The on-ramp. |
+| 2 | Minulla on — Possession | **RULES** | The *minulla on* possession structure — taught as a pattern, so part WORDS. |
+| 3 | Verb Type 1 | **RULES** | First systematic conjugation system. |
+| 4 | Missä? — Inessive | **RULES** | First grammatical case + vowel harmony. |
+| 5 | Numerot ja Partitiivi | **RULES** | Partitive after numbers — but numbers themselves are heavy **WORDS**. |
+| 6 | KPT — Basics | **RULES** | Consonant gradation, the 6 core patterns. |
+| 7 | Verb Type 3 + KPT NT→NN | **RULES** | Two-consonant stems + gradation in verbs. *(currently active)* |
+| 8 | Paikallissijat — -ssa vs -lla | **RULES** | The full placement-case system. |
+| 9 | Verb Type 2 | **RULES** | -da/-dä verbs; käydä vs mennä. |
+| 10 | Partitiivi — When and Why | **RULES** | The full partitive picture — a named weak area. |
+| 11 | Verb Type 4 | **RULES** | Vowel + ta/tä verbs, T→D gradation. |
+| 12 | KPT — Complete Pattern | **REPS** | Consolidation session — all 9 gradation patterns drilled together. |
+| 13 | Mihin? — Illative | **RULES** | Movement-toward case. |
+| 14 | Mistä? — Elative | **RULES** | Movement-away case. |
+| 15 | Verb Types 5 & 6 | **RULES** | -ita/-itä verbs and their stems — finishes the verb-type system. |
+| 16 | Kenen? — Genitive | **RULES** | Possession and the -n ending. |
+| 17 | Aika — Time Expressions | **WORDS** | Clock, days, frequency — heavy vocabulary; a named weak area. |
+| 18 | Adjektiivi — Agreement | **RULES** | Adjective–noun case agreement. |
+| 19 | Monikko — Plurals | **RULES** | Plural stems, KPT in plurals, partitive plural. |
+| 20 | Allatiivi & Ablatiivi | **RULES** | Surface movement cases. |
+| 21 | Objekti — Object Rules | **RULES** | The hardest synthesis: total vs partial object. |
+| 22 | Puhekieli — Spoken Finnish | **FLOW** | The written↔spoken gap — bridges deliberately to real speech. |
+| 23 | A1 Kertaus — Review | **REPS** | Consolidation of the whole first half. |
+| 24 | A2 Siirtyminen — Entry Check | **FLOW** | Spoken production + reading comprehension — assessment by use. |
+
+### The shape this reveals (and what to do about it)
+
+Counting the centres of gravity:
+
+- **WORDS:** 2 primary (sessions 1, 17), shared in several more
+- **RULES:** ~17 sessions
+- **REPS:** 2 (sessions 12, 23)
+- **FLOW:** 2 (sessions 22, 24)
+
+This is worth saying plainly: **the SKK1 curriculum is a classic grammar syllabus.** It is a
+long RULES spine with a short WORDS on-ramp, two REPS checkpoints, and FLOW saved almost
+entirely for the very end.
+
+**Our own framework predicts this is backwards.** Per Krashen (Part 1), FLOW — comprehensible
+input absorbed with a low affective filter — is the *only* thing that builds spontaneous
+speech, and it must run **throughout**, not arrive at session 22. A curriculum that defers
+real communicative use to the end is a curriculum optimised to produce an **"S"**
+(§1.3): a learner rich in rules who still can't talk.
+
+This mapping is therefore not decoration — it's a **diagnostic**. The action it points to:
+
+1. **The two rails carry the load the sessions don't.** Because the *content* sequence is
+   fixed by the SKK1 syllabus (and by the Natural Order, §1.4, we can't simply reorder it),
+   the rebalancing happens through the **rails**, not the stage labels. Every RULES-heavy
+   session must still be *delivered* on comprehensible input (Rail 1) and a low filter
+   (Rail 2) — i.e. the AI tutor converses in Finnish at i+1 and invites speaking early,
+   even in a grammar session.
+2. **Push FLOW earlier and more often.** Every session already ends in a live Conversation
+   step — protect and expand it. It is the framework's engine, not a victory lap.
+3. **Read the labels as a heat-map of risk.** Long unbroken runs of RULES (sessions 8–11,
+   13–21) are exactly where a learner is most likely to drift into Monitor overuse. Those
+   are the stretches that most need FLOW reinforcement woven in.
+
+> **The curriculum *is* the framework — but the mapping shows the curriculum currently
+> leans on the staircase and under-uses the rails. Closing that gap is the product roadmap.**
+
+---
+
 ## References
 
 - Krashen, S. D. (1981). *Second Language Acquisition and Second Language Learning.*
